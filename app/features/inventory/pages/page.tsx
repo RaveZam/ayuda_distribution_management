@@ -23,7 +23,7 @@ import { parseCsvFile } from "@/app/core/utils/parseCsv";
 import {
   FileImportModal,
   FileImportSummary,
-} from "@/app/features/components/file_modal";
+} from "@/app/features/inventory/components/file_modal";
 import { useLocalStorageState } from "@/app/core/hooks/useLocalStorageState";
 
 type InventoryCsvRow = {
@@ -287,7 +287,7 @@ export default function InventoryPage() {
                       <AlertTriangle className="h-5 w-5" />
                     </div>
                     <div className="text-xs font-medium text-slate-500">
-                      Items &lt; 10 Units
+                      Low Stock Items
                     </div>
                   </div>
                 </div>
