@@ -9,6 +9,7 @@ export default function Sidebar() {
 
   const isDashboard = pathname === "/";
   const isInventory = pathname.startsWith("/features/inventory");
+  const isTicketManager = pathname.startsWith("/features/ticket_section");
 
   return (
     <aside className="flex w-64 flex-col border-r border-slate-200 bg-white">
@@ -64,12 +65,25 @@ export default function Sidebar() {
           <span className="font-medium">Inventory</span>
         </Link>
 
-        <button className="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-100">
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-slate-300">
+        <Link
+          href="/features/ticket_section/pages"
+          className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+            isTicketManager
+              ? "bg-slate-900 text-white shadow-sm"
+              : "text-slate-700 hover:bg-slate-100"
+          }`}
+        >
+          <span
+            className={`inline-flex h-8 w-8 items-center justify-center rounded-md ${
+              isTicketManager
+                ? "bg-slate-800 text-white"
+                : "border border-slate-300"
+            }`}
+          >
             <Ticket className="h-4 w-4" />
           </span>
           <span className="font-medium">Ticket Manager</span>
-        </button>
+        </Link>
 
         <button className="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-100">
           <span className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-slate-300">
