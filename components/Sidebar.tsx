@@ -2,14 +2,24 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Boxes, Ticket, Tv, FileText } from "lucide-react";
+import {
+  LayoutDashboard,
+  Boxes,
+  Ticket,
+  Tv,
+  FileText,
+  Users,
+} from "lucide-react";
 
 export default function Sidebar() {
   const pathname = usePathname();
 
   const isDashboard = pathname === "/";
   const isInventory = pathname.startsWith("/features/inventory");
-  const isTicketManager = pathname.startsWith("/features/ticket_section");
+  const isTicketManager = pathname.startsWith("/features/ticket_section/pages");
+  const isFamilyMasterlist = pathname.startsWith(
+    "/features/ticket_section/family_masterlist"
+  );
 
   return (
     <aside className="flex w-64 flex-col border-r border-slate-200 bg-white">
@@ -85,12 +95,45 @@ export default function Sidebar() {
           <span className="font-medium">Ticket Manager</span>
         </Link>
 
-        <button className="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-100">
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-slate-300">
+        <Link
+          href="/features/ticket_section/family_masterlist"
+          className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+            isFamilyMasterlist
+              ? "bg-slate-900 text-white shadow-sm"
+              : "text-slate-700 hover:bg-slate-100"
+          }`}
+        >
+          <span
+            className={`inline-flex h-8 w-8 items-center justify-center rounded-md ${
+              isFamilyMasterlist
+                ? "bg-slate-800 text-white"
+                : "border border-slate-300"
+            }`}
+          >
+            <Users className="h-4 w-4" />
+          </span>
+          <span className="font-medium">Family Masterlist</span>
+        </Link>
+
+        <Link
+          href="/features/public_display"
+          className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+            pathname.startsWith("/features/public_display")
+              ? "bg-slate-900 text-white shadow-sm"
+              : "text-slate-700 hover:bg-slate-100"
+          }`}
+        >
+          <span
+            className={`inline-flex h-8 w-8 items-center justify-center rounded-md ${
+              pathname.startsWith("/features/public_display")
+                ? "bg-slate-800 text-white"
+                : "border border-slate-300"
+            }`}
+          >
             <Tv className="h-4 w-4" />
           </span>
           <span className="font-medium">Public Display</span>
-        </button>
+        </Link>
 
         <button className="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-100">
           <span className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-slate-300">
